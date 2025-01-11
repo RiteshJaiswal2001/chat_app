@@ -1,5 +1,7 @@
-import User from "../models/user.model.js";
-import Message from "../models/message.model.js";
+import { User } from "../models/user.model.js";
+import { Message } from "../models/message.model.js";
+import cloudinary from "../config/cloudinary.js";
+import { getReceiverSocketId, io } from "../config/socket.js";
 
 export const getUserForSidebar = async (req, res) => {
   try {
@@ -43,16 +45,19 @@ export const sendMessage = async (req, res) => {
       imageUrl = uploadResponse.secure_url;
     }
 
-   
-
     const newMessage = new Message({
       senderId,
       receiverId,
       text,
-      image:imageUrl
+      image: imageUrl,
     });
-    
+
     await newMessage.save();
+
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
 
     res.status(201).json(newMessage);
   } catch (error) {
