@@ -33,6 +33,14 @@ NODE_ENV=development
 
 ```
 
+### 📷 Screenshots 
+![login](https://github.com/user-attachments/assets/04332d42-d7fe-4379-a132-cb86f97563eb)
+
+![front](https://github.com/user-attachments/assets/5435ff5b-72a6-43db-b80b-ae47eb1d4466)
+![profile](https://github.com/user-attachments/assets/0bfd2fd1-8787-4b45-9e44-5f690100effd)
+![chat](https://github.com/user-attachments/assets/ceb772af-8225-468e-a054-70283f20a830)
+
+
 ### Build the app
 
 ```shell
